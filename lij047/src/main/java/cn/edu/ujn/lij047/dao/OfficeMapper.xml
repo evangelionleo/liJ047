@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ujn.lab3.dao.OfficeMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.ujn.lab3.dao.Office">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="roomname" jdbcType="VARCHAR" property="roomname" />
+    <result column="roomnum" jdbcType="INTEGER" property="roomnum" />
+    <result column="roomtype" jdbcType="VARCHAR" property="roomtype" />
+    <result column="seatnum" jdbcType="INTEGER" property="seatnum" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, roomname, roomnum, roomtype, seatnum, remark, addtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from info_office
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from info_office
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.ujn.lab3.dao.Office">
+    insert into info_office (id, roomname, roomnum, 
+      roomtype, seatnum, remark, 
+      addtime)
+    values (#{id,jdbcType=INTEGER}, #{roomname,jdbcType=VARCHAR}, #{roomnum,jdbcType=INTEGER}, 
+      #{roomtype,jdbcType=VARCHAR}, #{seatnum,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.ujn.lab3.dao.Office">
+    insert into info_office
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roomname != null">
+        roomname,
+      </if>
+      <if test="roomnum != null">
+        roomnum,
+      </if>
+      <if test="roomtype != null">
+        roomtype,
+      </if>
+      <if test="seatnum != null">
+        seatnum,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roomname != null">
+        #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="roomnum != null">
+        #{roomnum,jdbcType=INTEGER},
+      </if>
+      <if test="roomtype != null">
+        #{roomtype,jdbcType=VARCHAR},
+      </if>
+      <if test="seatnum != null">
+        #{seatnum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.ujn.lab3.dao.Office">
+    update info_office
+    <set>
+      <if test="roomname != null">
+        roomname = #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="roomnum != null">
+        roomnum = #{roomnum,jdbcType=INTEGER},
+      </if>
+      <if test="roomtype != null">
+        roomtype = #{roomtype,jdbcType=VARCHAR},
+      </if>
+      <if test="seatnum != null">
+        seatnum = #{seatnum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.ujn.lab3.dao.Office">
+    update info_office
+    set roomname = #{roomname,jdbcType=VARCHAR},
+      roomnum = #{roomnum,jdbcType=INTEGER},
+      roomtype = #{roomtype,jdbcType=VARCHAR},
+      seatnum = #{seatnum,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll"  parameterType="java.lang.String" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from info_office		
+	</select>
+</mapper>
